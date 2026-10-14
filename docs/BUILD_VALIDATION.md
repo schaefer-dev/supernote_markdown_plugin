@@ -6,12 +6,12 @@
 - 41 automated tests passed across Markdown parsing/section selection, layout and overflow, sequential import orchestration, and the SDK adapter.
 - The official Android native build compiled the Kotlin bridge and produced the trimmed host-compatible native package.
 - Installer inspection verifies manifest identity, registry key, declared permissions, bundle, icon, native ReactPackage registration and DEX bridge classes.
-- A local parse of the Autohaus example yielded 41 blocks and 8 headings. The question section includes all three numbered questions, and YAML frontmatter is excluded. The source was read from the existing vault; neither its content nor a copy is in this repository.
+- A local parse of a real-world Markdown note confirmed complete numbered-question sections and YAML frontmatter exclusion. Personal source files are not part of this repository; the automated tests cover frontmatter removal and numbered lists, and parse the synthetic `fixtures/meeting.md`.
 - ADB reported no attached devices. No tablet files were changed or synced.
 
 Build toolchain: Node 24.21.0, JDK 21.0.12.1, Gradle 8.13, Android SDK 35 / Build Tools 35.0.0. The project requests NDK 27.1.12297006; the SDK's own Android module also resolves NDK 27.0.12077973. Packaging comes from official template 1.0.13, React Native 0.79.2 and sn-plugin-lib 0.2.3.
 
-The build tools used for this session are isolated under `/private/tmp/supernote-toolchains`, and do not change the default system Java or Node. That directory is temporary. For future builds, install the components through Android Studio and your preferred JDK/Node distribution as described in the README, or point local build environment variables to a retained installation.
+The build tools used for this session were installed in an isolated, temporary location and did not change the default system Java or Node. For future builds, install the components through Android Studio and your preferred JDK/Node distribution as described in the README, or point local build environment variables to a retained installation.
 
 Compatible patches updated markdown-it to 14.3.2 and the React Native CLI packages to 18.0.1, resolving the parser finding and critical CLI advisories seen in the initial dependency graph. Upstream transitive findings remain in the React Native/tooling graph; upgrading the host-mandated React Native runtime needs separate compatibility work. The plugin declares no network permission and uses no network requests.
 

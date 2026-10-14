@@ -1,0 +1,168 @@
+<!doctype html>
+<!-- Source of docs/images/hero.png. Regenerate with docs/hero/render.sh -->
+<!-- Illustration only: the tablet page is drawn in HTML/SVG, not a device screenshot. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markdown Import hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&family=Roboto:wght@400;700&family=Caveat:wght@500&display=block" rel="stylesheet">
+<style>
+  :root {
+    --paper: #e7e7e2;      /* e-ink paper */
+    --rule: rgba(30, 30, 25, 0.14);
+    --ink: #151515;
+    --ink-soft: #4a4a46;
+    --bezel: #2a2a28;
+    --page: #fbfbf8;
+    --page-rule: rgba(30, 30, 25, 0.10);
+    --line: 40px;          /* 8 mm ruling, like the device template */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; }
+  body {
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) - 1px), var(--rule) calc(var(--line) - 1px) var(--line)),
+      var(--paper);
+    font-family: "Schibsted Grotesk", system-ui, sans-serif;
+    color: var(--ink);
+    position: relative;
+  }
+
+  /* Text sits on the ruled lines: each block's line-height is a multiple of the ruling. */
+  .copy { position: absolute; left: 72px; top: 89px; width: 560px; }
+  h1 {
+    font-size: 82px; font-weight: 800; letter-spacing: -0.035em;
+    line-height: 80px; margin-bottom: 24px;
+  }
+  .pitch {
+    font-size: 27px; font-weight: 500; line-height: 40px; color: var(--ink);
+    letter-spacing: -0.01em; margin-bottom: 40px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 21px; line-height: 40px; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 14px;
+  }
+  li svg { flex: none; width: 22px; height: 22px; }
+  .foot {
+    position: absolute; left: 72px; top: 560px;
+    font-size: 17px; line-height: 40px; color: var(--ink-soft);
+  }
+
+  /* Markdown source card, tucked behind the tablet */
+  .md {
+    position: absolute; left: 676px; top: 128px; width: 300px; height: 330px;
+    background: #f7f7f5; border-radius: 10px; transform: rotate(-5deg);
+    box-shadow: 0 0 0 0.5px rgba(0,0,0,.25), 0 14px 36px rgba(0,0,0,.16);
+    overflow: hidden;
+  }
+  .md .tab {
+    height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 14px;
+    background: #ecece9; border-bottom: 1px solid rgba(0,0,0,.08);
+    font-size: 13px; font-weight: 700; color: #3c3c3a;
+  }
+  .md pre {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 14px; line-height: 26px;
+    padding: 12px 16px; color: #2b2b29; white-space: pre;
+  }
+  .md .m { color: #9a9a95; }       /* Markdown syntax */
+  .md .h { font-weight: 600; }
+
+  /* Hand-drawn arrow from source to page */
+  .arrow { position: absolute; left: 742px; top: 462px; width: 120px; height: 80px; }
+
+  /* Supernote-style tablet */
+  .tablet {
+    position: absolute; left: 862px; top: 46px; width: 384px; height: 640px;
+    background: var(--bezel); border-radius: 26px; padding: 18px 18px 0;
+    box-shadow: 0 24px 60px rgba(0,0,0,.24), 0 6px 16px rgba(0,0,0,.12);
+  }
+  .page {
+    position: relative; height: 100%; background:
+      repeating-linear-gradient(to bottom, transparent 0 31px, var(--page-rule) 31px 32px),
+      var(--page);
+    background-position: 0 14px;
+    border-radius: 6px 6px 0 0; overflow: hidden;
+    font-family: Roboto, "Noto Sans", sans-serif; color: #111;
+  }
+  .tb { position: absolute; left: 22px; right: 22px; }
+  .tb.h { top: 22px; font-size: 25px; font-weight: 700; line-height: 34px; }
+  .tb.body { top: 72px; font-size: 16px; line-height: 32px; }
+  .tb.body .ind { padding-left: 22px; }
+  /* Native text-box selection frame */
+  .sel { outline: 1.5px dashed #555; outline-offset: 6px; }
+  .handle { position: absolute; width: 9px; height: 9px; background: #fff; border: 1.5px solid #333; }
+  .tb.todo { top: 300px; font-size: 16px; line-height: 32px; }
+  .box { display: inline-block; width: 15px; height: 15px; border: 1.6px solid #111; border-radius: 2px; margin-right: 9px; vertical-align: -2px; }
+  .ink { position: absolute; inset: 0; pointer-events: none; }
+  .hand { font-family: Caveat, cursive; font-size: 27px; color: #1a1a1a; position: absolute; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <h1>Markdown Import</h1>
+    <p class="pitch">Bring your Markdown notes into<br>Supernote as real, editable text.</p>
+    <ul>
+      <li><svg viewBox="0 0 22 22"><path d="M3 12.5 Q6 14 8.5 18 Q12 8 20 3.5" fill="none" stroke="#151515" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Pick whole sections or single blocks</li>
+      <li><svg viewBox="0 0 22 22"><path d="M3 12.5 Q6 14 8.5 18 Q12 8 20 3.5" fill="none" stroke="#151515" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Native text boxes you can edit and search</li>
+      <li><svg viewBox="0 0 22 22"><path d="M3 12.5 Q6 14 8.5 18 Q12 8 20 3.5" fill="none" stroke="#151515" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>New pages, or a spot you draw on the page</li>
+      <li><svg viewBox="0 0 22 22"><path d="M3 12.5 Q6 14 8.5 18 Q12 8 20 3.5" fill="none" stroke="#151515" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified backup before every import</li>
+    </ul>
+  </div>
+  <p class="foot">Free and open source plugin for Supernote Manta · experimental</p>
+
+  <div class="md">
+    <div class="tab">meeting.md</div>
+<pre><span class="m">## </span><span class="h">Questions</span>
+
+<span class="m">1.</span> What is the delivery date?
+<span class="m">2.</span> Is <span class="m">**</span>the quoted price<span class="m">**</span> final?
+   <span class="m">-</span> Confirm registration fees.
+   <span class="m">-</span> Confirm the warranty.
+
+<span class="m">## </span><span class="h">Checklist</span>
+
+<span class="m">- [ ]</span> Ask for a written offer.</pre>
+  </div>
+
+  <svg class="arrow" viewBox="0 0 120 80" fill="none" stroke="#151515" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 10 C 22 56, 66 70, 110 46"/>
+    <path d="M94 40 L 111 45 L 102 60"/>
+  </svg>
+
+  <div class="tablet">
+    <div class="page">
+      <div class="tb h">Questions</div>
+      <div class="tb body sel">
+        1. What is the delivery date?<br>
+        2. Is the quoted price final?<br>
+        <div class="ind">• Confirm registration fees.</div>
+        <div class="ind">• Confirm the warranty.</div>
+      </div>
+      <span class="handle" style="left:11px; top:62px"></span>
+      <span class="handle" style="right:11px; top:62px"></span>
+      <span class="handle" style="left:11px; top:209px"></span>
+      <span class="handle" style="right:11px; top:209px"></span>
+
+      <div class="tb todo"><b>Checklist</b><br><span class="box"></span>Ask for a written offer.</div>
+
+      <!-- Handwriting added around the imported text -->
+      <svg class="ink" viewBox="0 0 348 622" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- circle around "quoted price" -->
+        <path d="M80 116 C 92 104, 172 104, 178 118 C 184 134, 116 140, 86 132 C 70 128, 72 114, 96 110"/>
+        <!-- tick in the checkbox -->
+        <path d="M24 346 L 29 352 L 38 339" stroke-width="2.6"/>
+        <!-- underline under "Checklist" -->
+        <path d="M22 334 C 50 332, 70 335, 96 332"/>
+        <!-- line under the margin note -->
+        <path d="M196 262 C 240 258, 290 260, 326 256"/>
+      </svg>
+      <span class="hand" style="left:206px; top:222px">€ 6.000 ok?</span>
+      <span class="hand" style="left:22px; top:404px">Call back on Friday</span>
+      <span class="hand" style="left:22px; top:436px">→ confirm the warranty</span>
+    </div>
+  </div>
+</body>
+</html>
