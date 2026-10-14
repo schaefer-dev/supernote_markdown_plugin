@@ -1,0 +1,51 @@
+# JavaScript dependencies, caches and logs
+node_modules/
+.cache/
+.metro-health-check*
+*.tsbuildinfo
+*.log
+
+# Generated builds and plugin installers
+build/
+/dist/
+/coverage/
+*.jsbundle
+*.apk
+*.aab
+*.snplg
+*.npk
+
+# Android / Gradle local state
+.gradle/
+.cxx/
+.kotlin/
+local.properties
+*.hprof
+
+# Signing keys (the template's public debug key is required for builds)
+*.keystore
+!/android/app/debug.keystore
+*.jks
+*.p12
+
+# Isolated toolchains and local environment settings
+/.toolchains/
+/.toolchain-env
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Python tooling caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS and IDE local files
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+
+# Local personal samples; synthetic fixtures elsewhere remain trackable
+/fixtures/private/

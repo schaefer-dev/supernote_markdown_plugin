@@ -1,0 +1,12 @@
+{
+  "name": "Markdown Import",
+  "pluginKey": "supernote-markdown-plugin",
+  "pluginID": "snmdschaefer00001",
+  "iconPath": "assets/icon.png",
+  "desc": "Import Markdown sections as editable text in native notebooks. Experimental: Manta, Chauvet 3.30.45.",
+  "versionCode": "1",
+  "versionName": "0.1.0",
+  "jsMainPath": "index",
+  "author": "Daniel Schaefer",
+  "uses-permissions": ["plugin.permission.FILE:READ", "plugin.permission.FILE:WRITE"]
+}
